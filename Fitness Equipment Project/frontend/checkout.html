@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - FitGear</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #f7f3ee;">
+
+<div class="container my-5">
+  <h2 class="text-darkbrown mb-4">Checkout</h2>
+
+  <!-- Order Summary -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-caramel text-white">
+      <h5 class="mb-0">Order Summary</h5>
+    </div>
+    <div class="card-body" id="order-summary">
+      <!-- Items will be injected here -->
+    </div>
+    <div class="card-footer text-end fw-bold">
+      Total: $<span id="checkout-total">0.00</span>
+    </div>
+  </div>
+
+  <!-- Payment Section -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-darkbrown text-white">
+      <h5 class="mb-0">Payment Details</h5>
+    </div>
+    <div class="card-body">
+      <form id="payment-form">
+        <div class="mb-3">
+          <label for="card-name" class="form-label">Cardholder Name</label>
+          <input type="text" class="form-control" id="card-name" required>
+        </div>
+        <div class="mb-3">
+          <label for="card-number" class="form-label">Card Number</label>
+          <input type="text" class="form-control" id="card-number" maxlength="16" required>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="expiry" class="form-label">Expiry Date</label>
+            <input type="text" class="form-control" id="expiry" placeholder="MM/YY" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cvv" maxlength="4" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-caramel w-100 mt-3">Pay Now</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  async function renderCheckout() {
+    const res = await fetch("get_cart.php");
+    const cart = await res.json();
+    const summary = document.getElementById("order-summary");
+    const totalEl = document.getElementById("checkout-total");
+
+    let total = 0;
+    summary.innerHTML = "";
+
+    cart.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      summary.innerHTML += `
+        <div class="d-flex justify-content-between mb-2">
+          <div>${item.product_name} (x${item.quantity})</div>
+          <div>$${itemTotal.toFixed(2)}</div>
+        </div>
+      `;
+    });
+
+    totalEl.textContent = total.toFixed(2);
+  }
+
+  document.getElementById("payment-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    // Simulate payment success and clear cart
+    const res = await fetch("clear_cart.php", { method: "POST" });
+    const data = await res.json();
+    if (data.status === "success") {
+        window.location.href = "thankyou.html";
+      }      
+  });
+
+  document.addEventListener("DOMContentLoaded", renderCheckout);
+</script>
+
+</body>
+</html>

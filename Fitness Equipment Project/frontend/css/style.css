@@ -1,0 +1,129 @@
+:root {
+    --caramel: #c68c53;
+    --dark-brown: #4b2e2b;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff;
+    color: var(--dark-brown);
+  }
+  
+  .bg-darkbrown {
+    background-color: var(--dark-brown) !important;
+  }
+  
+  .text-caramel {
+    color: var(--caramel) !important;
+  }
+  
+  .btn-caramel {
+    background-color: var(--caramel);
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-caramel:hover {
+    background-color: #b17943;
+    color: #fff;
+  }
+  
+  .hero-section {
+    background-color: var(--dark-brown);
+  }
+  .is-invalid {
+    border-color: #dc3545 !important;
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .card-img-top {
+    object-fit: cover;
+    height: 250px;
+  }
+  
+  .text-caramel {
+    color: var(--caramel);
+  }
+  
+  .text-darkbrown {
+    color: var(--dark-brown);
+  }
+  
+  .btn-caramel {
+    background-color: var(--caramel);
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-caramel:hover {
+    background-color: #b17943;
+    color: #fff;
+  }
+/* Product Details Page */
+.img-fluid {
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .text-darkbrown {
+    color: var(--dark-brown);
+  }
+  
+  .text-caramel {
+    color: var(--caramel);
+  }
+  
+  .btn-caramel {
+    background-color: var(--caramel);
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-caramel:hover {
+    background-color: #b17943;
+    color: #fff;
+  }
+  
+  .btn-outline-dark {
+    border: 2px solid var(--dark-brown);
+    color: var(--dark-brown);
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: var(--dark-brown);
+    color: #fff;
+  }
+  .product-gallery {
+    padding: 3rem;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .gallery-grid a img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-grid a img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+    
+        
